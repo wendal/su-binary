@@ -32,13 +32,18 @@
 #include <getopt.h>
 #include <stdint.h>
 #include <pwd.h>
-
-#include <private/android_filesystem_config.h>
-#include <cutils/properties.h>
-#include <cutils/log.h>
+#include <sys/stat.h>
 
 #include "su.h"
 #include "utils.h"
+#include <android/log.h>
+#define LOGE //
+#define LOGW //
+#define LOGD //
+#define send_intent //
+
+#define AID_SHELL 2000
+#define AID_ROOT 0
 
 /* Still lazt, will fix this */
 static char socket_path[PATH_MAX];
@@ -130,7 +135,6 @@ static void socket_cleanup(void)
 {
     unlink(socket_path);
 }
-https://github.com/ChainsDD/su-binary/archive/master.zip
 static void cleanup(void)
 {
     socket_cleanup();
@@ -353,7 +357,7 @@ static void allow(const struct su_context *ctx)
     fprintf(stderr, "Cannot execute %s: %s\n", ctx->to.shell, strerror(err));
     exit(EXIT_FAILURE);
 }
-
+#define PROPERTY_VALUE_MAX 92
 int main(int argc, char *argv[])
 {
     struct su_context ctx = {
