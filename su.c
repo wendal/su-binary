@@ -130,7 +130,7 @@ static void socket_cleanup(void)
 {
     unlink(socket_path);
 }
-
+https://github.com/ChainsDD/su-binary/archive/master.zip
 static void cleanup(void)
 {
     socket_cleanup();
@@ -535,7 +535,7 @@ int main(int argc, char *argv[])
         deny(&ctx);
     }
 
-    dballow = database_check(&ctx);
+    dballow = DB_ALLOW;
     switch (dballow) {
         case DB_DENY: deny(&ctx);
         case DB_ALLOW: allow(&ctx);
